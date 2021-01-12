@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="equ_products_form_view" model="ir.ui.view">
+            <field name="name">equ.products.form.view</field>
+            <field name="model">equ.products</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button string="Employee"  type="object" name="product_name_employee_name" class="oe_stat_button" icon="fa-cubes" />
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name" required="1"/>
+                                <field name="purches_date" />
+                                <field name="model_number" required="1"/>
+                            </group>
+                            <group>
+                                <field name="warranty_date"/>     
+                                <field name="company_name"/>
+                                <field name="stock"/> 
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="equ_products_tree_view" model="ir.ui.view">
+            <field name="name">equ.products.tree.view</field>
+            <field name="model">equ.products</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="model_number"/>
+                    <field name="company_name"/>
+                    <field name="stock"/>
+                </tree>
+            </field>
+        </record> 
+
+
+        <record id="equ_products_view_search" model="ir.ui.view">
+            <field name="name">equ.products.view.search</field>
+            <field name="model">equ.products</field>
+            <field name="arch" type="xml">
+                <search string="Search Products">
+                    <field name="name"></field>
+                    <field name="model_number"></field>
+                    <!-- <filter string="Archive" name="archive"  domain="[('active','=',False)]" /> -->
+
+                  
+                    <group string="Group By">
+                        <filter string="Products" name="product_name" domain="[]" context="{'group_by':'name'}"/>
+                    </group> 
+                </search>
+            </field>
+        </record>
+
+
+       
+
+
+        <record id="action_equ_products" model="ir.actions.act_window">
+            <field name="name">Product Information</field>
+            <field name="res_model">equ.products</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+          
+        <menuitem id="main_menu_equipment_management" name='Equipment Management'/>
+        <menuitem id="menu_equ_products" action='action_equ_products' name="Products" parent='main_menu_equipment_management'/>
+    </data>
+</odoo>

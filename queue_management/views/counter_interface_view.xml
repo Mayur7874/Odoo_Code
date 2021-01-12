@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="counter_interface_form_view" model="ir.ui.view">
+            <field name="name">counter.interface.form.view</field>
+            <field name="model">counter.interface</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="counter_status" widget="statusbar" statusbar_visible="active,deactive,busy,free" clickable = '1'/>
+                    </header>
+                    <sheet>
+                         <notebook>
+                            <page name="public" string="General Information">
+                            <group>
+                                <group>
+                                <field name="uname" />
+                                <field name="uemail"/>
+                                </group>
+                                <group>
+                                <field name="bill"/>
+                                <field name="warrenty"/>
+                                </group>
+                            </group>
+                            </page>
+                            <page name="public" string="Tokan information">
+                            <group>
+                                <group>
+                                    <field name="t_date"/>
+                                    <field name="counter_number"/>
+                                </group>
+                                <group>
+                                    <field name="tokan_number"/>
+                                </group>
+                            </group>
+                            </page>
+                            <page name="public" string="Device information">
+                            <group>
+                                <group>
+                                    <field name="device_reparing_date"/>
+                                    <field name="total_reparing_day"/>
+                                    <field name="user_rating"/>
+                                </group>
+                                <group>
+                                    <field name="device_status"/>
+                                    <field name="display_status"/>
+                                    <field name="counter_model_rel" widget='many2many_tags'/>
+                                    <field name="counter_problam_rel" widget='many2many_tags'/>
+                                </group>
+                            </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="counter_interface_tree_view" model="ir.ui.view">
+            <field name="name">"counter.interface.tree.view"</field>
+            <field name="model">counter.interface</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="tokan_number"/>
+                    <field name="counter_number"/>
+                    <field name="device_status"/>
+                    <field name="counter_model_rel"  widget='many2many_tags'/>
+                    <field name="counter_problam_rel" widget='many2many_tags'/>
+                </tree>
+            </field>
+        </record> 
+                     
+        <record id="action_counter_interface" model="ir.actions.act_window">
+            <field name="name">Counter Information</field>
+            <field name="res_model">counter.interface</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_counter_interface" action='action_counter_interface' name="Counter" parent='main_menu_queue_management'/>
+
+    </data>
+</odoo>

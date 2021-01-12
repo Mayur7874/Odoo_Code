@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="vacancy_info_spt_form_view" model="ir.ui.view">
+            <field name="name">vacancy.info.spt.form.view</field>
+            <field name="model">vacancy.info.spt</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="vac_bra_name"/>
+                                <field name="name" required="1"/>
+                                <field name="total_vac"/>
+                                <field name="vac_shift"/>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+
+              
+        <record id="vacancy_info_spt_tree_view" model="ir.ui.view">
+            <field name="name">vacancy.info.spt.tree.view</field>
+            <field name="model">vacancy.info.spt</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="vac_bra_name"/>
+                    <field name="name" required="1"/>
+                    <field name="total_vac"/>
+                    <field name="vac_shift"/>
+                </tree>
+            </field>
+        </record> 
+
+
+        <record id="vacancy_info_spt_view_search" model="ir.ui.view">
+            <field name="name">vacancy.info.spt.view.search</field>
+            <field name="model">vacancy.info.spt</field>
+            <field name="arch" type="xml">
+                <search string="Search Product exp">
+                    <filter string="Archive" name="archive"  domain="[('active','=',False)]" />
+                </search>
+            </field>
+        </record>
+
+
+        <record id="action_vacancy_info_spt" model="ir.actions.act_window">
+            <field name="name">vacancy Information</field>
+            <field name="res_model">vacancy.info.spt</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+
+        <menuitem id="menu_vacancy_info_spt" action='action_vacancy_info_spt' name="Vacancy" parent='menu_employee_info_spt'/>
+    </data>
+</odoo>

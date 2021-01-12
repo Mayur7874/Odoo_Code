@@ -1,0 +1,10 @@
+from .import airline
+from .import flight
+from .import route
+from .import gate
+from .import flight_schedule
+from .import booking
+from .import seat_category
+from .import food_beverage
+from .import book_food_beverage
+from .import employee

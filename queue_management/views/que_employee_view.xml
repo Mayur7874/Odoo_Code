@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="que_employee_form_view" model="ir.ui.view">
+            <field name="name">que.employee.form.view</field>
+            <field name="model">que.employee</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group> 
+                            <field name="name"/>
+                            <field name="address"/>
+                            <field name="contact"/>
+                            <field name="dob"/>
+                            </group>
+                            <group> 
+                            <field name="document"/>
+                            <field name="counter"/>
+                            <field name="emp_counter_status"/>
+                            <field name="employess_status"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="que_employee_tree_view" model="ir.ui.view">
+            <field name="name">"que.employee.tree.view"</field>
+            <field name="model">que.employee</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="contact"/>
+                    <field name="counter"/>
+                    <field name="emp_counter_status"/>
+                    <field name="employess_status"/>
+                </tree>
+            </field>
+        </record> 
+                     
+        <record id="action_que_employee" model="ir.actions.act_window">
+            <field name="name">Employee Information</field>
+            <field name="res_model">que.employee</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+     
+        <menuitem id="menu_que_employee" action='action_que_employee' name="Employee" parent='main_menu_queue_management'/>
+
+    </data>
+</odoo>

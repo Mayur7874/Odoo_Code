@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_example_customar,access.example.customar,model_example_customar,,1,1,1,1
+access_example_product,access.example.product,model_example_product,,1,1,1,1
+access_example_cus_pro_line,access.example.cus.pro.line,model_example_cus_pro_line,,1,1,1,1

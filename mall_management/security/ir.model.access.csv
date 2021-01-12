@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_employee_info_spt,access.employee.info.spt,model_employee_info_spt,,1,1,1,1
+access_product_info_spt,access.product.info.spt,model_product_info_spt,,1,1,1,1
+access_customar_info_spt,access.customar.info.spt,model_customar_info_spt,,1,1,1,1
+access_branch_info_spt,access.branch.info.spt,model_branch_info_spt,,1,1,1,1
+access_stock_info_spt,access.stock.info.spt,model_stock_info_spt,,1,1,1,1
+access_vacancy_info_spt,access.vacancy.info.spt,model_vacancy_info_spt,,1,1,1,1

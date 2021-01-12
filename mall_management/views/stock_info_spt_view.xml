@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="stock_info_spt_form_view" model="ir.ui.view">
+            <field name="name">stock.info.spt.form.view</field>
+            <field name="model">stock.info.spt</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <field name="exp_date"/>
+                                <field name="Pro_com"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="stock_info_spt_tree_view" model="ir.ui.view">
+            <field name="name">"stock.info.spt.tree.view"</field>
+            <field name="model">stock.info.spt</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" required="1"/>
+                    <field name="exp_date" required="1"/>
+                    <field name="Pro_com"/>
+                </tree>
+            </field>
+        </record> 
+                     
+        <record id="action_stock_info_spt" model="ir.actions.act_window">
+            <field name="name">Stock Information</field>
+            <field name="res_model">stock.info.spt</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        
+        <menuitem id="menu_stock_info_spt" action='action_stock_info_spt' name="Stock" parent='menu_main_mall_management'/>
+
+    </data>
+</odoo>

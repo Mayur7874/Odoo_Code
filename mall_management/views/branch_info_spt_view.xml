@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="branch_info_spt_form_view" model="ir.ui.view">
+            <field name="name">branch.info.spt.form.view</field>
+            <field name="model">branch.info.spt</field>
+            <field name="arch" type="xml">
+                <form>
+                <header>
+                    <!-- <button name="update_confirm" string="Confirm" type="object" /> -->
+                   
+                </header>
+                    <sheet>
+                    <div class="oe_button_box" name="button_box">
+			            <button string="Evening" type="action" name="%(action_eveningshift_info_spt)d" class="oe_stat_button" icon="fa-exchange" />
+                        <button string="Morning" type="action" name="%(action_morningshift_info_spt)d" class="oe_stat_button" icon="fa-paperclip" />
+                        <button string="Branch wise" type="object" name="action_bra_wise_info" class="oe_stat_button" icon="fa-paperclip" />
+		            </div>
+                        <group>
+                            <group>
+                                <field name="bra_name" required="1"/>
+                                <field name="bra_address" />
+                                <field name="bra_contact" required="1"/>
+                                <field name="bra_to_emp_ids">
+                                    <tree>
+                                        <field name="emp_name" />
+                                        <field name="emp_shift"/>
+                                        <field name="emp_department"/>
+                                        <field name="emp_to_bra_id"/>
+                                    </tree>
+                                </field>      
+                                <field name="mm_emp_ids" widget="many2many_tags"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="branch_info_spt_tree_view" model="ir.ui.view">
+            <field name="name">branch.info.spt.tree.view</field>
+            <field name="model">branch.info.spt</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="bra_name" />
+                    <field name="bra_contact"/>
+                </tree>
+            </field>
+        </record> 
+
+
+       
+
+
+        <record id="action_branch_info_spt" model="ir.actions.act_window">
+            <field name="name">Branch Information</field>
+            <field name="res_model">branch.info.spt</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    
+       
+         <menuitem id="menu_branch_info_spt" action='action_branch_info_spt' name="Branch" parent='menu_employee_info_spt'/>
+    </data>
+</odoo>

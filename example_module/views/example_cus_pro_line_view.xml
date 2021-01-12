@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="example_cus_pro_line_form_view" model="ir.ui.view">
+            <field name="name">example.cus.pro.line.form.view"</field>
+            <field name="model">example.cus.pro.line</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="item_id"/>
+                                <field name="quantity"/>
+                                <field name="price"/>
+                                <field name="subtotal"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="example_cus_pro_line_tree_view" model="ir.ui.view">
+            <field name="name">example.cus.pro.line.tree.view</field>
+            <field name="model">example.cus.pro.line</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="item_id"/>
+                    <field name="quantity"/>
+                    <field name="price"/>
+                    <field name="subtotal"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_example_cus_pro_line" model="ir.actions.act_window">
+            <field name="name">Example line</field>
+            <field name="res_model">example.cus.pro.line</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+    </data>
+</odoo>

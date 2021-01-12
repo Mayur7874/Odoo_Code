@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_quant_form_view" model="ir.ui.view">
+            <field name="name">product.quant.form.view</field>
+            <field name="model">product.quant</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <field name="state" widget="statusbar" visible_statesbar="draft,active,deactive" />
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button string="Product stock" type="object" name="product_stock" class="oe_stat_button" icon="fa-cubes" attrs="{'invisible':[('deactive_selection','=', False)]}"/>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="product_name_equ_name" required="1"/>
+                                <field name="serial_number"/>
+                                <field name="model" required="1"/>
+                                <field name="comapny_name"/>     
+                                <field name="asign_by"/>
+                                <field name="asign_date"/> 
+                            </group>
+                            <group>
+                                <field name="product_quant_employee_name"/> 
+                                <field name="employee_post"/> 
+                                <field name="active_selection"/> 
+                                <field name="deactive_selection"/> 
+                                <field name="reason" attrs="{'invisible':[('deactive_selection','=', False)]} "/> 
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="product_quant_tree_view" model="ir.ui.view">
+            <field name="name">product.quant.tree.view</field>
+            <field name="model">product.quant</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="product_name_equ_name"/>
+                    <field name="serial_number"/>
+                    <field name="model" required="1"/>
+                    <field name="product_quant_employee_name"/> 
+                </tree>
+            </field>
+        </record> 
+
+
+       
+
+
+        <record id="action_product_quant" model="ir.actions.act_window">
+            <field name="name">Product Quant</field>
+            <field name="res_model">product.quant</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <record id="seq_serial_referance" model="ir.sequence">
+            <field name="name">Serial referance</field>
+            <field name="code">serial_ref</field>
+            <field name="prefix">snep</field>
+            <field name="padding">3</field>
+        </record>
+          
+        
+        <menuitem id="menu_product_quant" action='action_product_quant' name="Products Quant" parent='main_menu_equipment_management'/>
+    </data>
+</odoo>

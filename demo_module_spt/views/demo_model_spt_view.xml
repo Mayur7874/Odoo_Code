@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="demo_model_form_view_spt" model="ir.ui.view">
+            <field name="name">demo.model.form.view.spt</field>
+            <field name="model">demo.model.spt</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" required="1"/>
+                                <field name="amount" />
+                                <field name="num" />
+                                <field name="date" />
+                                <field name="add_file" />
+                                <field name="datetime" />
+                            </group>
+                            <group>
+                                <field name="location_id"/>
+                                <field name="id_company"/>
+                                <field name="Category_ids"/>
+                                <field name="ids_warehouses" widget="many2many_tags"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="demo_model_tree_view_spt" model="ir.ui.view">
+            <field name="name">demo.model.tree.view.spt</field>
+            <field name="model">demo.model.spt</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="date" />
+                    <field name="amount" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_demo_model_spt" model="ir.actions.act_window">
+            <field name="name">Demo Model</field>
+            <field name="res_model">demo.model.spt</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        
+        <menuitem id="menu_main_demo_model_spt" name="Parent Demo Model"  />
+        <menuitem id="menu_demo_model_spt" name="Demo Model" action='action_demo_model_spt' parent='menu_main_demo_model_spt'/>
+         <menuitem id="menu_demo1_model_spt" name="Demo 1 Model" action='action_demo_model_spt' parent='menu_main_demo_model_spt'/>
+    </data>
+</odoo>

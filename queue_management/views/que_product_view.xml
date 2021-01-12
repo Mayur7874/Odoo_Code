@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="que_product_form_view" model="ir.ui.view">
+            <field name="name">que.product.form.view</field>
+            <field name="model">que.product</field>
+            <field name="arch" type="xml">
+                <form>
+                <header>
+                    <button name="%(action_show_cat)d" type="action" string="Show Cat"/>
+                </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="category"/>
+                                <field name="model"/>
+                                <field name="dec"/>
+                            </group>
+                            <group>
+                                <field name="pro_warrenty"/>
+                                <field name="pro_releases_date"/>
+                                <field name="prices"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="que_product_tree_view" model="ir.ui.view">
+            <field name="name">"que.product.tree.view"</field>
+            <field name="model">que.product</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="category"/>
+                    <field name="model"/>
+                    <field name="dec"/>
+                </tree>
+            </field>
+        </record> 
+                     
+        <record id="action_que_product" model="ir.actions.act_window">
+            <field name="name">Product Information</field>
+            <field name="res_model">que.product</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        
+        <menuitem id="menu_que_product" action='action_que_product' name="Product" parent='main_menu_queue_management'/>
+
+    </data>
+</odoo>

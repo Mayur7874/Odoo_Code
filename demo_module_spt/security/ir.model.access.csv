@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_all_demo_model_spt,access.demo.model.spt,model_demo_model_spt,,1,1,1,1
+access_all_account_move_line_spt,access.account.move.line.spt,model_account_move_line_spt,,1,1,1,1
+

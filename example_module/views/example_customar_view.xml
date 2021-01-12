@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id= "example_customar_form_view" model="ir.ui.view">
+            <field name="name">example.customar.form.view"</field>
+            <field name="model">example.customar</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button string="Confirm" type="object" name="update_confirm" class="oe_stat_button" icon="fa-cubes"/>
+                        </div>
+                            <group>
+                                <field name="name"/>
+                                <field name="cus_pro_line_ids"/>
+                            </group>
+                            <footer>
+                                <h3>
+                                    <group>
+                                        <field name="total" force_save="1" readonly="1"/>
+                                    </group>
+                                </h3>
+                            </footer>
+                        </sheet>
+                    </form>
+                </field>
+            </record>
+
+            <record id="example_customar_tree_view" model="ir.ui.view">
+                <field name="name">example.customar.tree.view</field>
+                <field name="model">example.customar</field>
+                <field name="arch" type="xml">
+                    <tree>
+                        <field name="name"/>
+                        <field name="cus_pro_line_ids"/>
+                        <field name="total"/>
+                    </tree>
+                </field>
+            </record>
+
+            <record id="action_example_customar" model="ir.actions.act_window">
+                <field name="name">Example Customar</field>
+                <field name="res_model">example.customar</field>
+                <field name="view_mode">tree,form</field>
+            </record>
+
+
+            <menuitem id="menu_example_Customer" name="Example Customer" action='action_example_customar' parent='menu_main_example_model'/>
+        </data>
+    </odoo>

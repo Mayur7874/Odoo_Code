@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="employee_info_spt_form_view" model="ir.ui.view">
+            <field name="name">employee.info.spt.form.view</field>
+            <field name="model">employee.info.spt</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                    <div class="oe_button_box" name="button_box">
+			            <button string="Branch Info" type="action" name="%(action_branch_info_spt)d" class="oe_stat_button" icon="fa-exchange" />
+                        <button string="Vacancy" type="action" name="%(action_vacancy_info_spt)d" class="oe_stat_button" icon="fa-paperclip" />
+		            </div>
+                    <field name="emp_image" widget="image" class="o_kanban_image_fill_left" options="{'zoom': true, 'zoom_delay': 1000, 'background': true, 'preventClicks': false}"/>
+                        <group>
+                            <group>
+                                <field name="emp_name" required="1"/>
+                                <field name="emp_address" />
+                                <field name="emp_contact" required="1"/>
+                                <field name="emp_dob_date" />
+                                <field name="emp_joining_date"/>
+                                <field name="emp_to_bra_id"/>
+                                <field name="emp_present"/>
+                            </group>
+                            <group>
+                                <field name="emp_doc_file" />
+                                <field name="emp_shift" />
+                                <field name="emp_department"/>
+                                <field name="emp_last_date" attrs="{'invisible':[('emp_present','=',True)]} "/>
+                                <field name="emp_all_vac"/>
+                                <!-- <field name="mm_bra_ids" /> -->
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="employee_info_spt_tree_view" model="ir.ui.view">
+            <field name="name">employee.info.spt.tree.view</field>
+            <field name="model">employee.info.spt</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="emp_name" />
+                    <field name="emp_shift"/>
+                    <field name="emp_department"/>
+                    <field name="emp_joining_date"/>
+                    <field name="emp_to_bra_id"/>
+                    <field name="emp_image" widget='image'/>
+                </tree>
+            </field>
+        </record> 
+
+
+        <record id="employee_info_spt_view_kanban" model="ir.ui.view">
+            <field name="name">employee.info.spt.view.kanban</field>
+            <field name="model">employee.info.spt</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="emp_name"/>
+                    <field name="emp_contact" />
+                    <field name="emp_to_bra_id"/>
+                    <field name="emp_department"/>
+                    <field name="emp_image"/>
+                    <field name="id"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="o_kanban_image">
+                                    <!-- <img t-att-src="kanban_image('employee.info.spt','emp_image',record.id"/> -->
+                                    <img alt="Avatar" t-att-src="kanban_image('employee.info.spt', 'emp_image',record.id.raw_value)"/>
+                                    <!-- <field name="emp_image" widget="image" class="o_kanban_image_fill_left" options="{'zoom': true, 'zoom_delay': 1000, 'background': true, 'preventClicks': false}"/> -->
+                                    <!-- <img class="o_kanban_image_inner_pic" t-att-src="kanban_image('res.partner', 'image_128', record.parent_id.raw_value)"/> -->
+                                </div>
+                            <div class="oe_kanban_details">
+                                <t class="o_kanban_record_title">
+                                    <strong t-esc="record.emp_name.value"/>
+                                </t>
+                                <div t-if="record.emp_contact.value">
+                                    <t t-esc="record.emp_contact.value"/>
+                                </div>
+                                <div t-if="record.emp_department.value">
+                                    <t t-esc="record.emp_department.value"/>
+                                </div>
+                                <div t-if="record.emp_to_bra_id.value">
+                                    <t t-esc="record.emp_to_bra_id.value"/>
+                                </div>
+                            </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+        <record id="employee_info_spt_view_search" model="ir.ui.view">
+            <field name="name">employee.info.spt.view.search</field>
+            <field name="model">employee.info.spt</field>
+            <field name="arch" type="xml">
+                <search string="Search employee">
+                    <field name="emp_name"></field>
+                    <field name="emp_shift"></field>
+                    <field name="emp_department"></field>
+                    <field name="emp_to_bra_id"></field>
+                    <group string="Group By">
+                        <filter string="Shift" name="emp_shift" domain="[]" context="{'group_by':'emp_shift'}"/>
+                        <filter string="Branch wise" name="emp_to_bra_id" domain="[]" context="{'group_by':'emp_to_bra_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+        <record id="action_employee_info_spt" model="ir.actions.act_window">
+            <field name="name">Employee Information</field>
+            <field name="res_model">employee.info.spt</field>
+            <field name="view_mode">kanban,tree,form</field>
+        </record>
+       
+        <record id="action_morningshift_info_spt" model="ir.actions.act_window">
+            <field name="name">Morning Shift</field>
+            <field name="res_model">employee.info.spt</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('emp_shift','=','morning')]</field>
+        </record>
+
+        <record id="action_eveningshift_info_spt" model="ir.actions.act_window">
+            <field name="name">Evening Shift</field>
+            <field name="res_model">employee.info.spt</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('emp_shift','=','evening')]</field>
+        </record>
+
+        
+        <menuitem id="menu_main_mall_management"  name="Mall Management"/>
+        <menuitem id="menu_employee_info_spt" action='action_employee_info_spt' name="Employee" parent='menu_main_mall_management'/>
+        <menuitem id="menu_morningshift_info_spt" action='action_morningshift_info_spt' name="Morning Shift" parent='menu_employee_info_spt'/>
+        <menuitem id="menu_eveningshift_info_spt'" action='action_eveningshift_info_spt' name="Evening Shift" parent='menu_employee_info_spt'/>
+    </data>
+</odoo>

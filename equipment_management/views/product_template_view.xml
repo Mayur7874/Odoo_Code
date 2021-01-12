@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<data>
+    <record id="product_template_inherit_form_view" model="ir.ui.view">
+       <field name="name">product.template.inherit.form.view</field>
+       <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view" />
+       <field name="arch" type="xml">
+        <xpath expr="//sheet/notebook/page[@name='inventory']/group/group/field[@name='route_ids']" position="before">
+            <group>
+            <field name="pass_duration"/>
+            </group>
+        </xpath>
+
+        <xpath expr="//field[@name='invoice_policy']" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </xpath>
+       
+        <xpath expr="//sheet/notebook/page[@name='sales']" position="inside">
+            <group>
+            <field name='contact'/>
+            <field name="employee_name"/>
+            </group>
+        </xpath>
+       </field>
+    </record> 
+</data>
+</odoo>

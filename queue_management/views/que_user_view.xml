@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="que_user_form_view" model="ir.ui.view">
+            <field name="name">que.user.form.view</field>
+            <field name="model">que.user</field>
+            <field name="arch" type="xml">
+                <form>
+                <header>
+                   <field name="status" widget="statusbar" visible_statesbar="submit,done"/> 
+                   <button name="%(action_show_user)d" type="action" string="show User"/>
+                </header>
+                    <sheet>
+                     <div class="oe_button_box" name="button_box">
+                        <button string="Submit Information" type="object" name="submit_info" class="oe_stat_button" icon="fa-cubes" attrs="{'invisible':[('status','=','done')]}"/>
+                        </div>
+                            <group> 
+                             <field name="rating"/>
+                            </group>
+                         <notebook>
+                            <page name="public" string="General Information">
+                            <group>
+                                <group>
+                                <field name="name"/>
+                                <field name="contact"/>
+                                <field name="use_to_product_rel"/>
+                                <field name="use_to_probalm_rel"/>
+                                </group>
+                                <group>
+                                <field name="email"/>
+                                <field name="bill_no"/>
+                                <field name="names"/>
+                                </group>
+                            </group>
+                            </page>
+                            <page name="public" string="Device Selection">
+                            <group>
+                                <group>
+                                    <field name="tv"/>
+                                    <field name="phone"/>
+                                    <field name="laptop"/>
+                                    <field name="warrenty"/>
+                                </group>
+                                <group>
+                                    <field name="use_to_product_rel">
+                                        <tree>
+                                            <field name="model"/>
+                                        </tree>
+                                        </field>
+                                    <field name="use_to_probalm_rel" widget= 'many2many_tags'>
+                                        <tree>
+                                            <field name="name"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="que_user_tree_view" model="ir.ui.view">
+            <field name="name">"que.user.tree.view"</field>
+            <field name="model">que.user</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="use_to_product_rel"  widget= 'many2many_tags'/>
+                    <field name="use_to_probalm_rel" widget= 'many2many_tags'/>
+                </tree>
+            </field>
+        </record> 
+                     
+        <record id="action_que_user" model="ir.actions.act_window">
+            <field name="name">User Information</field>
+            <field name="res_model">que.user</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="main_menu_queue_management"  name="Queue Management"/>
+        <menuitem id="menu_que_user" action='action_que_user' name="User Registration" parent='main_menu_queue_management'/>
+
+    </data>
+</odoo>

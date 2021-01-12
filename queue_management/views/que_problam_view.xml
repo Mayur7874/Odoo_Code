@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="que_problam_form_view" model="ir.ui.view">
+            <field name="name">que.problam.form.view"</field>
+            <field name="model">que.problam</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" />
+                                <field name="problem_pro_name"/>
+                                <field name="problem_pro_model"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="que_problam_tree_view" model="ir.ui.view">
+            <field name="name">"que.problam.tree.view"</field>
+            <field name="model">que.problam</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" />
+                    <field name="problem_pro_name"/>
+                    <field name="problem_pro_model"/>
+                </tree>
+            </field>
+        </record> 
+                     
+        <record id="action_que_problam" model="ir.actions.act_window">
+            <field name="name">Problam Information</field>
+            <field name="res_model">que.problam</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+      
+        <menuitem id="menu_que_problam" action='action_que_problam' name="Problam" parent='main_menu_queue_management'/>
+
+    </data>
+</odoo>

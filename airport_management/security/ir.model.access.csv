@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_airline,access.airline,model_airline,,1,1,1,1
+access_flight,access.flight,model_flight,,1,1,1,1
+access_route,access.route,model_route,,1,1,1,1
+access_gate,access.gate,model_gate,,1,1,1,1
+access_flight_schedule,access.flight.schedule,model_flight_schedule,,1,1,1,1
+access_booking,access.booking,model_booking,,1,1,1,1
+access_seat_category,access.seat_category,model_seat_category,,1,1,1,1
+access_food_beverage,access.food.beverage,model_food_beverage,,1,1,1,1
+access_book_food_beverage,access.book.food.beverage,model_book_food_beverage,,1,1,1,1
+

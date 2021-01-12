@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="food_beverage_form_view" model="ir.ui.view">
+            <field name="name">food.beverage.form.view</field>
+            <field name="model">food.beverage</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" required="1"/>
+                                <field name="price"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="food_beverage_tree_view" model="ir.ui.view">
+            <field name="name">food.beverage.tree.view</field>
+            <field name="model">food.beverage</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name" required="1"/>
+                    <field name="price"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_food_beverage" model="ir.actions.act_window">
+            <field name="name">Food Beverage</field>
+            <field name="res_model">food.beverage</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem id="menu_food_beverage" name="Food Beverages" action='action_food_beverage' parent='menu_main_airline_management'/>
+    </data>
+</odoo>

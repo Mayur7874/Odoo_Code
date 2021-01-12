@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="que_tokan_interface_form_view" model="ir.ui.view">
+            <field name="name">que.tokan.interface.form.view</field>
+            <field name="model">que.tokan.interface</field>
+            <field name="arch" type="xml">
+                <form>
+                  <header>
+                   <field name="status" widget="statusbar" visible_statesbar="hold,done"/> 
+                   </header>
+                    <sheet>
+                        <group>
+                            <group> 
+                                <field name="number"/>
+                            </group>
+                            <group>
+                                <field name="date" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="public" string="User Information">
+                            <group>
+                                <group>
+                                <field name="username"/>
+                                <field name="usercontact"/>
+                                </group>
+                                <group>
+                                <field name="tokan_model_rel" widget= 'many2many_tags' >
+                                    <tree>
+                                        <field name="category"/>
+                                        <field name="model"/>
+                                    </tree>
+                                </field>
+                                <field name="tokan_Problam_rel" widget= 'many2many_tags'>
+                                    <tree>
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                                </group>
+                            </group>
+                            </page>
+                            <page name="public" string="Employee Information">
+                            <group>
+                                <group>
+                                    <field name="counternumber"/>
+                                    <field name="employeename"/>
+                                </group>
+                            </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="que_tokan_interface_tree_view" model="ir.ui.view">
+            <field name="name">"que.tokan.interface.tree.view""</field>
+            <field name="model">que.tokan.interface</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="number"/>
+                    <field name="date"/>
+                    <field name="counternumber"/>
+                    <field name="employeename"/>
+                    <field name="username"/>
+                    <field name="status"/>
+                    <field name="tokan_Problam_rel"  widget= 'many2many_tags'/>
+                    <field name="tokan_model_rel" widget= 'many2many_tags'/>
+                </tree>
+            </field>
+        </record> 
+                     
+        <record id="action_que_tokan_interface" model="ir.actions.act_window">
+            <field name="name">Tokan Information</field>
+            <field name="res_model">que.tokan.interface</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="seq_token_referance" model="ir.sequence">
+            <field name="name">Token referance</field>
+            <field name="code">token_ref</field>
+            <field name="prefix">Mi</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+        <menuitem id="menu_que_tokan_interface" action='action_que_tokan_interface' name="Tokan Interface" parent='main_menu_queue_management'/>
+
+        </data>
+    </odoo>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_info_form_view" model="ir.ui.view">
+            <field name="name">product.info.form.view</field>
+            <field name="model">product.info</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="Product_info" />
+                                <field name="E_Name" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record> 
+        
+        <record id="product_info_tree_view" model="ir.ui.view">
+            <field name="name">product.info.tree.view</field>
+            <field name="model">product.info</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="E_Name" />
+                    <field name="Product_info"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_employee_info" model="ir.actions.act_window">
+            <field name="name">employee info</field>
+            <field name="res_model">employee.info</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_product_info" model="ir.actions.act_window">
+            <field name="name">product info</field>
+            <field name="res_model">product.info</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <menuitem id="menu_main_employee_info" name="CompanyMangement" />
+        <menuitem id="menu_employee_infot" name="Employeeinfo" action='action_employee_info' parent='menu_main_employee_info'/>
+        <menuitem id="menu_product_infot" name="Productinfo" action='action_product_info' parent='menu_main_employee_info'/>
+         <!-- <menuitem id="menu_demo1_model_spt" name="Demo 1 Model" action='action_demo_model_spt' parent='menu_main_demo_model_spt'/>  -->
+    </data>
+</odoo>

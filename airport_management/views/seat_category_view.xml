@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="seat_category_form_view" model="ir.ui.view">
+            <field name="name">seat.category.form.view</field>
+            <field name="model">seat.category</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="category_flight_id"/>
+                                <field name="category_company_id" force_save="1"/>
+                                <field name="name" required="1"/>
+                                <field name="price"/>
+                                <field name="total_seat"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="seat_category_tree_view" model="ir.ui.view">
+            <field name="name">seat.category.tree.view</field>
+            <field name="model">seat.category</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="category_flight_id"/>
+                    <field name="category_company_id"/>
+                    <field name="name"/>
+                    <field name="price"/>
+                    <field name="total_seat"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_seat_category" model="ir.actions.act_window">
+            <field name="name">Seat category</field>
+            <field name="res_model">seat.category</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem id="menu_seat_category" name="Seat Category" action='action_seat_category' parent='menu_main_airline_management'/>
+    </data>
+</odoo>

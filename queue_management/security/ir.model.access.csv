@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_que_user,access.que.user,model_que_user,,1,1,1,1
+access_que_product,access.que.product,model_que_product,,1,1,1,1
+access_que_problam,access.que.problam,model_que_problam,,1,1,1,1
+access_que_employee,access.que.employee,model_que_employee,,1,1,1,1
+access_que_tokan_interface,access.que.tokan.interface,model_que_tokan_interface,,1,1,1,1
+access_counter_interface,access.counter.interface,model_counter_interface,,1,1,1,1
+access_display_interface,access.display.interface,model_display_interface,,1,1,1,1

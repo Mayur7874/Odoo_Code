@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<data>
+    <record id="account_move_inherit_form_view" model="ir.ui.view">
+       <field name="name">account.move.inherit.form.view</field>
+       <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+       <field name="arch" type="xml">
+
+         <xpath expr="//sheet/notebook/page[@name='other_info']/group/group/field[@name='invoice_partner_bank_id']" position="after">
+            <field name='age'/>
+        </xpath>
+
+        <xpath expr="//field[@name= 'invoice_payment_ref']" position="attributes">
+            <attribute name="invisible">1</attribute>
+        </xpath> 
+       
+        <xpath expr="//sheet/notebook/page[@name='other_info']" position="inside">
+            <group>
+                <group>
+                    <field name='po_no'/>
+                </group>
+            </group>
+        </xpath>
+
+       </field>
+    </record> 
+</data>
+</odoo>

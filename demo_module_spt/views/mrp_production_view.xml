@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="mrp_production_inherit_form_view" model="ir.ui.view">
+            <field name="name">mrp.production.inherit.form.view</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view" />
+            <field name="arch" type="xml">
+                <!-- <xpath expr="//from/header/button[@name='button_mark_done']" position="after">
+                    <button string="Conformation" name="action_done" type="object" class="oe_highlight"/>
+                </xpath> -->
+                <xpath expr="//button[@name='button_mark_done']" position="before">
+                    <button string="Conformation" name="action_done" type="object" class="oe_highlight"/>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page string="Row Product">
+                        <group>
+                            <group>
+                                <!-- <field name='row_product_ids'/> -->
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

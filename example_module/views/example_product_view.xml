@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="example_product_form_view" model="ir.ui.view">
+            <field name="name">example.product.form.view</field>
+            <field name="model">example.product</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="price"/>
+                                <field name="stock"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="example_product_tree_view" model="ir.ui.view">
+            <field name="name">example.product.tree.view</field>
+            <field name="model">example.product</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="price"/>
+                    <field name="stock"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_example_product" model="ir.actions.act_window">
+            <field name="name">Example Product</field>
+            <field name="res_model">example.product</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem id="menu_main_example_model" name="Example Model"/>
+        <menuitem id="menu_example_product" name="Example Product" action='action_example_product' parent='menu_main_example_model'/>
+    </data>
+</odoo>

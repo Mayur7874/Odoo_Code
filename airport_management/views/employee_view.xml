@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="hr_employee_form_view_spt" model="ir.ui.view">
+            <field name="name">hr.employee.form.view.spt</field>
+            <field name="model">hr.employee</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="image_1920" widget='image' class="oe_avatar"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Employee's Name" required="True"/>
+                            </h1>
+                            <h2>
+                                <field name="job_title" placeholder="Job Position" />
+                            </h2>
+                        </div>
+                        <group>
+                            <group string='Work Information'>
+                                <field name="job_id"/>
+                                <field name="employee_airline_id"/>
+                                <field name="employee_flight_id"/>
+                                <field name="employee_status"/>
+                            </group>
+                            <group string='Private Information'>
+                                <field name="employee_address"/>
+                                <field name="employee_phone"/>
+                                <field name="country_id"/>
+                                <field name="gender"/>
+                                <field name="certificate" />
+                                <field name="company_id" invisible='1' />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="hr_employee_tree_view_spt" model="ir.ui.view">
+            <field name="name">hr.employee.tree.view.spt</field>
+            <field name="model">hr.employee</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="job_id"/>
+                    <field name="employee_airline_id"/>
+                    <field name="employee_flight_id"/>
+                    <field name="country_id"/>
+                    <field name="gender"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="view_employee_filter_spt" model="ir.ui.view">
+            <field name="name">hr.employee.search</field>
+            <field name="model">hr.employee</field>
+            <field name="arch" type="xml">
+                <search string="Employees">
+                    <field name="employee_airline_id"/>
+                    <filter string="Status" name="airline" domain="[('employee_status', '=', True)]"/>
+                    <group expand="0" string="Group By">
+                        <filter name="employee_airline_id" string="Airline" domain="[]" context="{'group_by':'employee_airline_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+        <record id="action_airline_employees" model="ir.actions.act_window">
+            <field name="name">Airline Employess</field>
+            <field name="res_model">hr.employee</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'kanban', 'view_id': ref('hr.hr_kanban_view_employees')}),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('hr_employee_tree_view_spt')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('hr_employee_form_view_spt')})]"/>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_employee_filter_spt"/>
+            <!-- <field name="context">{'search_default_airline':1}</field> -->
+        </record>
+
+        <menuitem id="hr_employee_menu_spt" name ='Employees' parent="menu_main_airline_management" action="action_airline_employees"/>
+    </data>
+</odoo>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="display_interface_form_view" model="ir.ui.view">
+            <field name="name">display.interface.form.view</field>
+            <field name="model">display.interface</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group> 
+                            <field name="user_tokan_numbe"/>
+                            <field name="counter_number"/>
+                            <field name="employee"/>
+                            </group>
+                            <group> 
+                            <field name="user"/>
+                            <field name="user_display_status"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+
+        <record id="display_interface_tree_view" model="ir.ui.view">
+            <field name="name">"display.interface.tree.view"</field>
+            <field name="model">display.interface</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="user_tokan_numbe"/>
+                    <field name="counter_number"/>
+                    <field name="employee"/>
+                    <field name="user"/>
+                </tree>
+            </field>
+        </record> 
+                     
+        <record id="action_display_interface" model="ir.actions.act_window">
+            <field name="name">Display</field>
+            <field name="res_model">display.interface</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+     
+        <menuitem id="menu_display_interface" action='action_display_interface' name="Display" parent='main_menu_queue_management'/>
+
+    </data>
+</odoo>

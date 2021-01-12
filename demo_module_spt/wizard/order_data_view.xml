@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<odoo>
+    <data>
+        <record id="order_data_view_form" model="ir.ui.view">
+            <field name="name">order.data.view.form</field>
+            <field name="model">order.data</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="sale" readonly="1"/>
+                            <field name="sale_order_line" readonly="1">
+                                <tree>
+                                    <field name="product_id"/>
+                                    <field name="product_uom_qty"/> 
+                                    <field name="image" widget="image" height='50'/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- 
+        <record id="order_data_tree_view" model="ir.ui.view">
+            <field name="name">order.data.tree.view</field>
+            <field name="model">order.data</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name='sale'/>
+                </tree>
+            </field>
+        </record> -->
+    </data>
+</odoo>
+
+
+
+               <!-- <field name="product_id"/>
+                                    <field name="product_uom_qty"/> 
+                                    <field name="image" widget="image" height='50'/> -->

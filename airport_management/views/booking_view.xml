@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="booking_form_view" model="ir.ui.view">
+            <field name="name">booking.form.view</field>
+            <field name="model">booking</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button string="Confirm" type="object" name="action_confirm" class="oe_stat_button" attrs="{'invisible':['|',('status', '=', 'cancel'),('status', '=', 'confirm')]}"/>
+                        <button string="Cancel" type="object" name="action_cancel" class="oe_stat_button" attrs="{'invisible': ['|',('status', '=', 'draft'),('status', '=', 'cancel')]}"/>
+                        <field name="status" widget="statusbar" visible_statusber='statusbar'/>
+                    </header>
+                    <sheet>
+                        <field name="image" widget="image"  class="oe_avatar"/>
+                        <group>
+                            <group>
+                                <field name="ticket_id"/>
+                                <field name="partner_id" required="1" domain="[('is_company','=',False)]" force_save="1" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Ticket Info">
+                            <group>
+                                <group>
+                                    <field name="date" required="1"/>
+                                    <field name="category" required="1"/>
+                                    <field name="routes_id" required="1"/>
+                                </group>
+                                <group>
+                                    <field name="booking_flight_id" required="1"/>
+                                    <field name="comapny_id" required="1" force_save="1"/>
+                                    <field name="seat_category_id" required="1"/>
+                                    <field name="book_seats" required="1"/>
+                                    <field name="boarding_time" required="1"/>
+                                </group>
+                            </group>
+                            </page>
+                            <page string="Food and Beverage">
+                                <field name='food_beverage_ids'/>
+                            </page>
+                        </notebook>
+                          <footer>
+                                <h3>
+                                    <group>
+                                        <field name="amount" force_save="1" readonly="1"/>
+                                        <field name="food_beverage_charge" force_save="1" readonly="1"/>
+                                        <field name="net_amount" force_save="1" readonly="1"/>
+                                    </group>
+                                </h3>
+                            </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="booking_tree_view" model="ir.ui.view">
+            <field name="name">booking.tree.view</field>
+            <field name="model">booking</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="partner_id"/>
+                    <field name="date"/>
+                    <field name="category"/>
+                    <field name="routes_id"/>
+                    <field name="booking_flight_id"/>
+                    <field name="comapny_id"/>
+                    <field name="boarding_time" required="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_booking" model="ir.actions.act_window">
+            <field name="name">Booking</field>
+            <field name="res_model">booking</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="seq_ticket_referance" model="ir.sequence">
+            <field name="name">Ticket</field>
+            <field name="code">increment_ticket_id</field>
+            <field name="prefix">TI</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+
+        <menuitem id="menu_booking" name="Booking" action='action_booking' parent='menu_main_airline_management'/>
+    </data>
+</odoo>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="book_food_beverage_form_view" model="ir.ui.view">
+            <field name="name">book.food.beverage.form.view</field>
+            <field name="model">book.food.beverage</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="item_id" required="1"/>
+                                <field name="price" force_save="1" readonly="1" />
+                                <field name="quantity"/>
+                                <field name="subtotal" force_save="1" readonly="1"/>
+                                <field name="rel_book_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="book_food_beverage_tree_view" model="ir.ui.view">
+            <field name="name">book.food.beverage.tree.view</field>
+            <field name="model">book.food.beverage</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="item_id" required="1"/>
+                    <field name="quantity"/>
+                    <field name="price"/>
+                    <field name="subtotal" sum ='SubTotal' />
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_book_food_beverage" model="ir.actions.act_window">
+            <field name="name">Book Food Beverage</field>
+            <field name="res_model">book.food.beverage</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem id="menu_book_food_beverage" name="Food Beverages line" action='action_book_food_beverage' parent='menu_main_airline_management'/>
+    </data>
+</odoo>

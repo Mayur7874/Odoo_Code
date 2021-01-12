@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_info_spt_form_view" model="ir.ui.view">
+            <field name="name">product.info.spt.form.view"</field>
+            <field name="model">product.info.spt</field>
+            <field name="arch" type="xml">
+                <form>
+                <header>
+                   <field name="state" widget="statusbar" visible_statesbar="draft,archive" /> 
+                    <button string="Show to Archive" type="object" name="show_to_archive" class="oe_stat_button" icon="fa-cubes" attrs="{'invisible':[('state','=','archive')]}"/>
+                    <button string="Archive to Show" type="object" name="archive_to_show" class="oe_stat_button" icon="fa-cubes" attrs="{'invisible':[('state','=','draft')]}"/>
+                </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button string="Product wise"   type="object" name="pro_wise_info" class="oe_stat_button" icon="fa-cubes" />
+                        </div>
+                        
+                        <group>
+                            <group>
+                                <field name="pro_name" required="1"/>
+                                <field name="pro_category" required="1" />
+                                <field name="pro_company" required="1"/>
+                                <field name="pro_company_price" />
+                                <field name="pro_incomeing_date"/>
+                                <field name="Pro_qun" required="1"/>
+                            </group>
+                            <group>
+                                <field name="pro_sale_price" />
+                                <field name="pro_warranty_selection"/>
+                                <field name="pro_warranty_time" attrs="{'invisible':[('pro_warranty_selection','=',False)]}"/>
+                                <field name="pro_my" attrs="{'invisible':[('pro_warranty_selection','=',False)]}"/>
+                                <field name="Pro_sta_date"/>
+                                <field name="Pro_exp_date"/>
+                                <field name="active" readonly="1" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="public" string="pro Information">
+                                <group string="Location">
+                                    <field name="pro_name" />
+                                </group>
+                                 <group string="Location">
+                                    <field name="pro_category" />
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="product_info_spt_tree_view" model="ir.ui.view">
+            <field name="name">product.info.spt.tree.view</field>
+            <field name="model">product.info.spt</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="pro_name"/>
+                    <field name="pro_category"/>
+                    <field name="pro_sale_price" sum="ToatalSale"/>
+                    <field name="pro_company"/>
+                    <field name="pro_incomeing_date"/>
+                    <field name="Pro_sta_date"/>
+                    <field name="Pro_exp_date"/>
+                    <field name="Pro_qun"/>
+                </tree>
+            </field>
+        </record> 
+
+        <record id="product_info_spt_view_search" model="ir.ui.view">
+            <field name="name">product.info.spt.tree.search</field>
+            <field name="model">product.info.spt</field>
+            <field name="arch" type="xml">
+                <search string="Search Product exp">
+                    <field name="pro_name"></field>
+                    <field name="pro_category"></field>
+                    <field name="pro_company"></field>
+                    <field name="Pro_exp_date"></field>
+                    <filter string="Current Expiry" name="current_expiry" domain="[('Pro_exp_date','=',datetime.datetime.now().strftime('%Y-%m-%d'))]"/>
+                    <filter string="Archive" name="archive"  domain="[('active','=',False)]" />
+
+                  
+                    <group string="Group By">
+                        <filter string="Productcat" name="pro_category" domain="[]" context="{'group_by':'pro_category'}"/>
+                        <!-- <filter string="Customer" name="partner_id" domain="[]" context="{'group_by':'partner_id'}"/>
+                        <filter string="Department" name="department_id" domain="[]" context="{'group_by':'department_id'}"/> -->
+                    </group> 
+                </search>
+            </field>
+        </record>
+
+
+       
+
+
+        <record id="action_product_info_spt" model="ir.actions.act_window">
+            <field name="name">Product Information</field>
+            <field name="res_model">product.info.spt</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        
+
+        
+        <menuitem id="menu_product_info_spt" action='action_product_info_spt' name="Product" parent='menu_main_mall_management'/>
+        
+    </data>
+</odoo>

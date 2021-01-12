@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="partner_model_form_view" model="ir.ui.view">
+            <field name="name">partner.modelform.view</field>
+            <field name="model">partner.model</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="address" />
+                                <field name="mo_number"  required="1" widget="phone"/>
+                            </group>
+                            <group>
+                                <field name="image_file"/>
+                                <field name="is_customar"/>
+                                <field name="is_vendor"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="partner_model_tree_view" model="ir.ui.view">
+            <field name="name">partner.model.tree.view</field>
+            <field name="model">partner.model</field> 
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="address" />
+                    <field name="mo_number"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_partner_model" model="ir.actions.act_window">
+            <field name="name">Partner Model</field>
+            <field name="res_model">partner.model</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_customar_partner_model" model="ir.actions.act_window">
+            <field name="name">Customar</field>
+            <field name="res_model">partner.model</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('is_customar','=',True),('is_vendor','=',False)]</field>
+        </record>
+
+        <record id="action_vendor_partner_model" model="ir.actions.act_window">
+            <field name="name">Vendor</field>
+            <field name="res_model">partner.model</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('is_vendor','=',True),('is_customar','=',False)]</field>
+        </record>
+
+
+        <record id="action_both_partner_model" model="ir.actions.act_window">
+            <field name="name">Both Partner</field>
+            <field name="res_model">partner.model</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('is_vendor','=',True),('is_customar','=',True)]</field>
+        </record>
+
+        <menuitem id="main_menu_partner_model" name="Sales Modules" />
+        <menuitem id="menu_partner_model" name="Partner Model" action='action_partner_model' parent='main_menu_partner_model'/>
+        <menuitem id="menu_customar_partner_model" name="Customar" action='action_customar_partner_model' parent='menu_partner_model'/>
+        <menuitem id="menu_vendor_partner_model" name="Vendor" action='action_vendor_partner_model' parent='menu_partner_model'/>
+        <menuitem id="menu_both_partner_model" name="Both Partner" action='action_both_partner_model' parent='menu_partner_model'/>
+    </data>
+</odoo>

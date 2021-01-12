@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_equ_products,access.equ.products,model_equ_products,,1,1,1,1
+access_product_quant,access.product.quant,model_product_quant,,1,1,1,1
+access_equ_employee,access.equ.employee,model_equ_employee,,1,1,1,1
+access_equ_request,access.equ.request,model_equ_request,,1,1,1,1
+

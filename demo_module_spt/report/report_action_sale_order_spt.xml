@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    <report
+        id="report_action_sale_order_spt"
+        model="sale.order"
+        string="Order / Custom Report"
+        report_type="qweb-pdf"
+        name="demo_module_spt.report_template_sale_order_spt"
+        file="demo_module_spt.report_template_sale_order_spt"
+    />
+
+    </data>
+</odoo>

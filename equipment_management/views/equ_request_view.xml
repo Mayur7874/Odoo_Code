@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="equ_request_form_view" model="ir.ui.view">
+            <field name="name">equ.request.form.view</field>
+            <field name="model">equ.request</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="request_employee_name" required="1"/>
+                                <field name="equipment_name"/>
+                                <field name="reason" required="1"/>
+                            </group>
+                            <group>
+                                <field name="post"/>     
+                                <field name="selection"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="equ_request_tree_view" model="ir.ui.view">
+            <field name="name">equ.request.tree.view</field>
+            <field name="model">equ.request</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="request_employee_name"/>
+                    <field name="equipment_name"/>
+                    <field name="reason"/>
+                    <field name="selection"/>
+                </tree>
+            </field>
+        </record> 
+
+
+       
+
+
+        <record id="action_equ_request" model="ir.actions.act_window">
+            <field name="name">Request Information</field>
+            <field name="res_model">equ.request</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+          
+       
+        <menuitem id="menu_equ_request" action='action_equ_request' name="Request" parent='main_menu_equipment_management'/>
+    </data>
+</odoo>

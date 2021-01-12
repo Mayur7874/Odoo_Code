@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="airline_form_view" model="ir.ui.view">
+            <field name="name">airline.form.view</field>
+            <field name="model">airline</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="airline_id" required="1"/>
+                                <field name="flight"/>
+                                <field name="country"/>
+                                <field name="flight_ids"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="airline_tree_view" model="ir.ui.view">
+            <field name="name">airline.tree.view</field>
+            <field name="model">airline</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="airline_id"/>
+                    <field name="flight" sum="Total Filght"/>
+                    <field name="country"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_airline" model="ir.actions.act_window">
+            <field name="name">Airline</field>
+            <field name="res_model">airline</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem id="menu_airline" name="Airline" action='action_airline' parent='menu_main_airline_management'/>
+    </data>
+</odoo>
