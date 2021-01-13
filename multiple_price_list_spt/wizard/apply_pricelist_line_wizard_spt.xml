@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="apply_pricelist_line_wizard_tree_view" model="ir.ui.view">
+            <field name="name">apply.pricelist.line.wizard.tree.view</field>
+            <field name="model">apply.pricelist.line.wizard.spt</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                   <field name="pricelist_id" readonly="1"/>
+                   <field name="unit" readonly="1"/>
+                   <field name="unit_price" readonly="1"/>
+                   <button name="apply_pricelist_wizard_action" type="object" string="Apply"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>

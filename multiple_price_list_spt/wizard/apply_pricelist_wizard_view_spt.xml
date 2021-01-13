@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="apply_pricelist_wizard_form_view" model="ir.ui.view">
+            <field name="name">apply.pricelist.wizard.form.view</field>
+            <field name="model">apply.pricelist.wizard.spt</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div>
+                            <field name="apply_pricelist_ids" readonly="1"/> 
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_template_inventory_stock_valuation_document">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <div>
+                    <h1 class="text-left">
+                        <span t-field="doc.companys_id.name"/>
+                    </h1>
+                    <hr class="dotted"/>
+                    <div class="text-left">
+                        <span t-field="doc.companys_id.street"/>
+                        <br/>
+                        <span t-field="doc.companys_id.street2"/>
+                        <br/>
+                        <span t-field="doc.companys_id.city"/>
+                        <label>
+                            <span></span>
+                        </label>
+                        <span t-field="doc.companys_id.zip"/>
+,                        <br/>
+                        <span t-field="doc.companys_id.state_id.name"/>
+                        <br/>
+                        <span t-field="doc.companys_id.country_id.name"/>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <h3>
+                        <strong>Inventory Valuation Report</strong>
+                    </h3>
+                </div>
+                <div class="text-center">
+                    <table class="table table-sm o_main_table" name='inventory_stock_valuation'>
+                        <thead>
+                            <tr>
+                                <th name="th_company">
+                                    <span>Company</span>
+                                </th>
+                                <th name="th_warehouse">
+                                    <span>Warehouse</span>
+                                </th>
+                                <th name="th_valuation_date">
+                                    <span>Valuation Date</span>
+                                </th>
+                                <th name="th_amount_in_currency">
+                                    <span>Amount in currency</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="stock_tbody">
+                            <tr>
+                                <td>
+                                    <span t-field="doc.companys_id.name"/>
+                                </td>
+                                <td>
+                                    <t t-foreach="doc.warehouses_ids" t-as="warehouses_id">
+                                        <span t-field="warehouses_id.name"/>
+                                        <span> ,</span>
+                                    </t>
+                                </td>
+                                <td>
+                                    <span t-field="doc.start_period"/>
+                                    <span> To </span>
+                                    <span t-field="doc.end_period"/>
+                                </td>
+
+                                <td>
+                                    <span t-field="doc.companys_id.currency_id"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <table class="table table-sm o_main_table" name='inventory_stock_value'>
+                        <thead>
+                            <tr>
+                                <th name="th_default_code">
+                                    <span>Default Code</span>
+                                </th>
+                                <th name="th_name">
+                                    <span>Name</span>
+                                </th>
+                                <th name="th_category">
+                                    <span>Category</span>
+                                </th>
+                                <th name="th_costing_method">
+                                    <span>Costing Method</span>
+                                </th>
+                                <th name="th_cost_price">
+                                    <span>Cost Price</span>
+                                </th>
+                                <th name="th_beginning">
+                                    <span>Beginning</span>
+                                </th>
+                                <th name="th_internal">
+                                    <span>Internal</span>
+                                </th>
+                                <th name="th_received">
+                                    <span>Received</span>
+                                </th>
+                                <th name="th_sales">
+                                    <span>Sales</span>
+                                </th>
+                                <th name="th_adjustment">
+                                    <span>Adjustment</span>
+                                </th>
+                                <th name="th_ending">
+                                    <span>Ending</span>
+                                </th>
+                                <th name="th_valuation">
+                                    <span>Valuation</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="stock_tbody">
+                            <t t-if="doc.filter_by == 'product'">
+                                <t t-foreach="doc.product_ids" t-as="product_ids">
+                                    <tr>
+                                        <td>
+                                            <span t-field="product_ids.default_code"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="product_ids.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="product_ids.categ_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="product_ids.categ_id.property_cost_method"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="product_ids.standard_price"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </t>
+                            <!-- <t t-if="doc.filter_by == 'category'">
+                                <t t-foreach="product_ids" t-as="prodct_id">
+                                </t>
+                                <t> -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </template>
+
+            <template id="report_template_inventory_stock_valuation">
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="doc">
+                        <t t-call="Inventory_stock_valuation.report_template_inventory_stock_valuation_document"/>
+                    </t>
+                </t>
+            </template>
+
+        </odoo>

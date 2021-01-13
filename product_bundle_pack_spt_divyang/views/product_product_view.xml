@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_product_form_view_spt_pack_product" model="ir.ui.view">
+            <field name="name">product.product.form.view.spt.pack.product</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/div[2]/div[1]" position="inside">
+                    <div>
+                        <field name="is_product_pack"/>
+                        <label for="is_product_pack" string='Product Pack'/>
+                    </div>
+                </xpath>
+                <xpath expr="//form/sheet/notebook" position="inside">
+                    <page string="Product Pack" attrs="{'invisible': [('is_product_pack', '=', False)]}">
+                        <field name="pack_ids" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="product_id" domain="[('is_product_pack','!=',True)]"/>
+                                <field name="lst_price" />
+                                <field name="product_qty"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+                <xpath expr="//button[@name='action_product_forecast_report']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('is_product_pack','=',True)]}</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_view_stock_move_lines']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('is_product_pack','=',True)]}</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_view_orderpoints']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('is_product_pack','=',True)]}</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_open_product_lot']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('is_product_pack','=',True)]}</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_view_po']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('is_product_pack','=',True)]}</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

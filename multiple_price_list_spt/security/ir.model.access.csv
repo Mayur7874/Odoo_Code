@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_apply_pricelist_wizard_spt,access.apply.pricelist.wizard.spt,model_apply_pricelist_wizard_spt,,1,1,1,1
+access_apply_pricelist_line_wizard_spt,access.apply.pricelist.line.wizard.spt,model_apply_pricelist_line_wizard_spt,,1,1,1,1

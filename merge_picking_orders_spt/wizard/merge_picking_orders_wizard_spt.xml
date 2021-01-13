@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<odoo>
+    <data>
+        <record id="merge_picking_orders_wizard_spt_form" model="ir.ui.view">
+            <field name="name">merge.picking.orders.wizard.spt.form</field>
+            <field name="model">merge.picking.orders.wizard.spt</field>
+            <field name="arch" type="xml">
+                <form string="picking wizard form">
+                    <sheet>
+                        <field name="pickings_ids">
+                            <tree>
+                                <field name="name"/>
+                                <field name="partner_id"/>
+                                <field name="scheduled_date"/>
+                                <field name="origin"/>
+                                <field name="state"/>
+                                <field name="picking_type_id"/>
+                            </tree>
+                        </field>
+                    </sheet>
+                    <footer>
+                        <button name="action_merge_order" type='object' string="Merge Pickings" class="btn-primary"/>
+                        <button string="Cancel" class="btn btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

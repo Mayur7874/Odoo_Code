@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="server_action_mearge_to_lead" model="ir.actions.server">
+            <field name="name">Merge To Lead</field>
+            <field name="type">ir.actions.server</field>
+            <field name="state">code</field>
+            <field name="model_id" ref="model_crm_lead"/>
+            <field name="binding_model_id" ref="model_crm_lead"/>
+            <field name="code">action = records.merge_to_lead()</field>
+        </record>
+    </data>
+</odoo>

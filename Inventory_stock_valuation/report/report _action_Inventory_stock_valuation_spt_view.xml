@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+    <report
+        id="report_action_inventory_stock_valuation_pdf_report"
+        model="inventory.stock.valuation.wizard.spt"
+        string="Inventory Stock Valuation / Stock Report"
+        report_type="qweb-pdf"
+        name="Inventory_stock_valuation.report_template_inventory_stock_valuation"
+        file="Inventory_stock_valuation.report_template_inventory_stock_valuation"
+    />
+    </data>
+</odoo>

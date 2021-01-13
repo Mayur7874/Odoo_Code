@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="prospects_leads_form_spt" model="ir.ui.view">
+            <field name="name">prospects.leads.form.spt</field>
+            <field name="model">crm.lead</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="convert_to_lead" string="Convert to Lead" type="object" help="Convert to Lead" class="oe_highlight" attrs="{'invisible':['|',('prospect_state', 'in', ('hold','lost')),('type','=','lead')]}"/>
+                        <button name="marks_as_lost" string="Mark Lost" type="object" attrs="{'invisible': ['|',('prospect_state', 'in', ('hold','lost')),('type','=','lead')]}"/>
+                        <button name="marks_as_lost" string="Mark Lost" type="object" class="oe_highlight" attrs="{'invisible': [('prospect_state', 'in', ('prospectnew','lost'))]}"/>
+                        <button name="restore_prospects" string="Restore" type="object" attrs="{'invisible': [('prospect_state', 'in', ('prospectnew','hold'))]}"/>
+                        <button name="marks_as_hold" string="Mark Hold" type="object" class="oe_highlight" attrs="{'invisible': ['|',('prospect_state', 'in', ('hold','lost')),('type','=','lead')]}"/>
+                        <button name="marks_as_prospect" string="Mark Prospect" type="object" class="oe_highlight" attrs="{'invisible': [('prospect_state', 'in', ('prospectnew','lost'))]}"/>
+                        <field name="prospect_state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <widget name="web_ribbon" title="Lost" bg_color="bg-danger" attrs="{'invisible': [('prospect_state', 'in', ('prospectnew','hold'))]}"/>
+                        <widget name="web_ribbon" title="Hold" attrs="{'invisible': [('prospect_state', 'in', ('prospectnew','lost'))]}" />
+                        <div class="oe_title">
+                            <h1>
+                                <div class="col">
+                                    <label for="name" class="oe_edit_only" string="Prospect"/>
+                                    <field name="name" placeholder="e.g. Product Pricing"/>
+                                </div>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <!-- Preload all the partner's information -->
+                                <field name="partner_name" />
+                                <label for="street" string="Address" />
+                                <div class="o_address_format">
+                                    <field name="street" placeholder="Street..." class="o_address_street"/>
+                                    <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                                    <field name="city" placeholder="City" class="o_address_city"/>
+                                    <field name="state_id" class="o_address_state" placeholder="State"/>
+                                    <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                                    <field name="country_id" placeholder="Country" class="o_address_country"/>
+                                </div>
+                                <field name="website" widget="url" placeholder="e.g. https://www.odoo.com"/>
+                                <field name="user_id" widget="many2one_avatar_user"/>
+                            </group>
+                            <group name="lead_info">
+                                <label for="contact_name"/>
+                                <div class="o_row">
+                                    <field name="contact_name"/>
+                                    <field name="title" placeholder="Title"/>
+                                </div>
+                                <field name="email_from" string="Email" widget="email"/>
+                                <field name="email_cc" />
+                                <field name="function"/>
+                                <field name="phone" widget="phone"/>
+                                <field name="mobile" widget="phone" string="Mobile"/>
+                                <field name="team_id" widget="selection" />
+                                <field name="type" invisible="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Internal Notes" name="internal_notes">
+                                <field name="description" placeholder="Add a description..."/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="prospects_leads_tree_view_spt" model="ir.ui.view">
+            <field name="name">prospects.leads.tree.view.spt</field>
+            <field name="model">crm.lead</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="date_deadline" invisible="1"/>
+                    <field name="create_date" optional="hide"/>
+                    <field name="name" string="Prospect"/>
+                    <field name="contact_name" optional="hide"/>
+                    <field name="partner_name" optional="hide"/>
+                    <field name="email_from" optional="show"/>
+                    <field name="phone" optional="show" class="o_force_ltr"/>
+                    <field name="company_id" groups="base.group_multi_company" optional="show"/>
+                    <field name="city" optional="show"/>
+                    <field name="country_id" optional="show"/>
+                    <field name="partner_id" invisible="1"/>
+                    <field name="user_id" optional="show" widget="many2one_avatar_user" domain="[('share', '=', False)]"/>
+                    <field name="team_id" optional="show"/>
+                    <field name="active" invisible="1"/>
+                    <field name="probability" invisible="1"/>
+                    <field name="campaign_id" optional="hide"/>
+                    <field name="referred" invisible="1"/>
+                    <field name="medium_id" optional="hide"/>
+                    <field name="source_id" optional="hide"/>
+                    <field name="message_needaction" invisible="1"/>
+                    <field name="tag_ids" optional="hide" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                    <field name="priority" optional="hide"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="prospect_search_view_spt" model="ir.ui.view">
+            <field name="name">prospect.search.view.spt</field>
+            <field name="model">crm.lead</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="active"/>
+                    <filter name="prospects_active" string="Prospect" domain="[('active','=',True)]"/>
+                    <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="crm_prospects_kanban_view_spt" model="ir.ui.view">
+            <field name="name">crm.prospects.kanban.view.spt</field>
+            <field name="model">crm.lead</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="color"/>
+                    <field name="priority"/>
+                    <field name="expected_revenue"/>
+                    <field name="kanban_state"/>
+                    <field name="activity_date_deadline"/>
+                    <field name="user_email"/>
+                    <field name="user_id"/>
+                    <field name="activity_summary"/>
+                    <field name="active"/>
+                    <field name="company_currency"/>
+                    <field name="activity_state" />
+                    <field name="activity_ids" />
+                    <progressbar field="activity_state" colors='{"planned": "success", "today": "warning", "overdue": "danger"}' sum_field="expected_revenue" help="This bar allows to filter the opportunities based on scheduled activities."/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="#{!selection_mode ? kanban_color(record.color.raw_value) : ''} oe_kanban_global_click">
+                                <div class="o_dropdown_kanban dropdown">
+
+                                    <a class="dropdown-toggle o-no-caret btn" role="button" data-toggle="dropdown" data-display="static" href="#" aria-label="Dropdown menu" title="Dropdown menu">
+                                        <span class="fa fa-ellipsis-v"/>
+                                    </a>
+                                    <div class="dropdown-menu" role="menu">
+                                        <t t-if="widget.editable">
+                                            <a role="menuitem" type="edit" class="dropdown-item">Edit</a>
+                                        </t>
+                                        <t t-if="widget.deletable">
+                                            <a role="menuitem" type="delete" class="dropdown-item">Delete</a>
+                                        </t>
+                                        <ul class="oe_kanban_colorpicker" data-field="color"/>
+                                    </div>
+                                </div>
+                                <div class="oe_kanban_content">
+                                    <div class="o_kanban_record_title">
+                                        <strong>
+                                            <field name="name"/>
+                                        </strong>
+                                    </div>
+                                    <div>
+                                        <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                    </div>
+                                    <div class="o_kanban_record_bottom">
+                                        <div class="oe_kanban_bottom_left">
+                                            <field name="priority" widget="priority" groups="base.group_user"/>
+                                            <field name="activity_ids" widget="kanban_activity"/>
+                                        </div>
+                                        <div class="oe_kanban_bottom_right">
+                                            <field name="user_id" widget="many2one_avatar_user"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="oe_clear"/>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="action_prospects_lead_spt" model="ir.actions.act_window">
+            <field name="name">Prospect</field>
+            <field name="res_model">crm.lead</field>
+            <field name="domain">[('type','=','prospect')]</field>
+            <field name="context">
+            {'search_default_prospects_active':1,
+            'default_type':'prospect',
+            }
+            </field>
+            <field name="search_view_id" ref="prospect_search_view_spt"/>
+            <field name="view_ids" eval="[(5, 0, 0),
+                        (0, 0, {'view_mode': 'kanban', 'view_id': ref('crm_prospects_kanban_view_spt')}),
+                        (0, 0, {'view_mode': 'tree', 'view_id': ref('prospects_leads_tree_view_spt')}),
+                        (0, 0, {'view_mode': 'form', 'view_id': ref('prospects_leads_form_spt')})]"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem name="Prospects" id="menu_prospect" parent="crm.crm_menu_root" action="action_prospects_lead_spt"/>
+    </data>
+</odoo>

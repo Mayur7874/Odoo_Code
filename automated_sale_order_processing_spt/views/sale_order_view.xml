@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="sale_order_inherit_form_view" model="ir.ui.view">
+            <field name="name">sale.order.inherit.form.view</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="groups_id" eval="[(4, ref('automated_sale_order_processing_spt.group_auto_process'))]"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form/sheet/notebook" position="inside">
+                    <page string='Auto Process'>
+                        <group>
+                            <group string='Workflow Option'>
+                                <field name="confirm_order"  force_save="1" readonly="1"/>
+                                <field name="validation_picking" force_save="1" readonly="1"/>
+                                <field name="create_invoice" force_save="1" readonly="1"/>
+                                <field name="confirm_invoice" force_save="1" readonly="1"/>
+                                <field name="register_payment" force_save="1" readonly="1"/>
+                                <field name="force_inventory_available" force_save="1" readonly="1"/>
+                            </group>
+                            <group string="Order configuration">
+                                <field name="payment_journal_id" force_save="1" readonly="1" attrs="{'invisible':[('register_payment','=',False)],'required':[('register_payment','=',True)]}"/>
+                                <field name="shipping_policy_spt" force_save="1" readonly="1"/>
+                                <field name="expected_days"  force_save="1" readonly="1" attrs="{'invisible': [('shipping_policy_spt','in',('direct',False))],'required':[('shipping_policy_spt','=','one')]}"/>
+                                <field name="invoice_policy_spt" force_save="1" readonly="1"  attrs="{'invisible': [('create_invoice','=',False)],'required':[('create_invoice','=',True)]}"/>
+                            </group>
+                            <group string='Auto Process Sale order' >
+                                <field name="is_eligible" invisible="1"/>
+                                <field name="workflow_process_id" force_save="1" readonly="1"/>
+                                <field name="auto_process_state" force_save="1" readonly="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="auto_process_error_state" force_save="1" readonly="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="error_note" force_save="1" readonly="1"/>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//form/header/button[@name='action_cancel']" position="after">
+                    <button name="action_auto_process_spt" type="object" string="Auto Process" class='btn btn-primary' attrs="{'invisible':['|','|',('is_eligible', '=', False),('auto_process_state','in',('processed','False')),('state','=','cancel')]}"/>
+                </xpath>
+                <xpath expr="//form/sheet/div[1]" position="inside" >
+                 <button type="object" name="action_error_meassage" class="oe_stat_button" icon="fa-exclamation-triangle" attrs="{'invisible': [('auto_process_state','in',('processed', False))]}">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_value" widget="statinfo">
+                                <field name="auto_process_error_state" widget="statinfo" nolabel="1" class="mr4" readonly="1"/>
+                            </span>
+                            <span class="o_stat_text">
+						        Erro State
+                            </span>
+                        </div>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="sale_order_inherit_tree_view" model="ir.ui.view">
+            <field name="name">sale.order.inherit.tree.view</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='state']" position="after">
+                    <field name="auto_process_state" invisible="1"/>
+                </xpath>
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="decoration-danger">auto_process_state == 'error_state'</attribute>
+                </xpath>
+            </field>
+        </record>
+       <!-- Search View -->
+       <record model="ir.ui.view" id="auto_process_is_eligible_serach_view_spt">
+           <field name="name">auto_process.is.eligible.serach.view.spt</field>
+           <field name="model">sale.order</field>
+           <field name="inherit_id" ref="sale.sale_order_view_search_inherit_quotation"/>
+           <field name="arch" type="xml">
+               <search>
+                   <field name="is_eligible"/>
+                   <filter name="is_eligible_auto_process" string="Auto Process Eligible" domain="[('is_eligible', '=', True)]"/>
+                   <group>
+                       <filter name="is_eligible_auto_process" string="Auto Process" context="{'group_by':'is_eligible'}"/>
+                   </group>
+               </search>
+           </field>
+       </record>
+    </data>
+</odoo>

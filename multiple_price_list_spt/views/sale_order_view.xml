@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="multiple_pricelist_inherit_sale_order" model="ir.ui.view">
+            <field name="name">multiple.pricelist.inherit.sale.order</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/tree" position="inside">
+                    <button name="apply_pricelist_action" type="object" string="Apply"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
+

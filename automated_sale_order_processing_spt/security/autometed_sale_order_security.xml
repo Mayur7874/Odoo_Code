@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data noupdate="0">
+    <record id="group_auto_process" model="res.groups">
+        <field name="name">Auto Process</field>
+        <!-- <field name="comment"></field>
+        <field name="category_id" ref="" /> -->
+    </record>
+    </data>
+
+</odoo>

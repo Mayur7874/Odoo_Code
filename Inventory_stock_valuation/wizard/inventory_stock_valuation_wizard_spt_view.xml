@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<odoo>
+    <data>
+        <record id="inventory_stock_valuation_wizard_spt_view_form" model="ir.ui.view">
+            <field name="name">inventory.stock.valuation.wizard.spt.view.form</field>
+            <field name="model">inventory.stock.valuation.wizard.spt</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group string='Warehouse'>
+                                <field name="warehouses_ids" widget="many2many_tags" domain="[('company_id','=',companys_id)]"/>
+                            </group>
+                            <group string='Comapny'>
+                                <field name="companys_id"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string='Location'>
+                                <field name="location_id" domain="[('company_id', '=',companys_id),('company_id', '!=',False)]"/>
+                            </group>
+                            <group string='Filter By' attrs="{'invisible': [('summary','=',True)]}">
+                                <field name="filter_by" widget='radio'/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string='Valuation'>
+                                <field name="start_period"/>
+                                <field name="end_period"/>
+                                <field name="summary"/>
+                            </group>
+                        </group>
+                        <group string='Category' attrs="{'invisible': ['|',('filter_by', '=', 'product'),('summary','=',True)]}">
+                            <div>
+                                <field name="category_ids">
+                                    <tree>
+                                        <field name='name'/>
+                                    </tree>
+                                </field>
+                            </div>
+                        </group>
+                        <group string='Product' attrs="{'invisible': ['|',('filter_by', '=', 'category'),('summary','=',True)]}">
+                            <div>
+                                <field name="product_ids">
+                                    <tree>
+                                        <field name='name'/>
+                                    </tree>
+                                </field>
+                            </div>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="action_inventory_stock_valuation_pdf_report" type='object' string="PRINT PDF" class="btn-primary"/>
+                        <button name="action_inventory_stock_valuation_excel_report" type='object' string="PRINT EXCEL" class="btn-primary"/>
+                        <button string="Cancel" class="btn btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_inventory_stock_valuation_wizard_spt" model="ir.actions.act_window">
+            <field name="name">Inventory Valuation</field>
+            <field name="res_model">inventory.stock.valuation.wizard.spt</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem name="Inventory Valuation Report" id="menu_inventory_valuation_report_spt" parent="stock.menu_warehouse_report" action="action_inventory_stock_valuation_wizard_spt"/>
+    </data>
+</odoo>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="bundle_sale_order_inherit_form_view" model="ir.ui.view">
+            <field name="name">bundle.sale.order.inherit.form.view</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                 <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree" position="inside">
+                    <field name="is_product_pack" invisible="1" />
+                </xpath>
+                <xpath expr="/form/sheet/notebook/page/field[@name='order_line']/tree/field[@name='discount']" position="attributes">
+                    <attribute name="attrs">{'readonly' : [('is_product_pack','!=',False)]}</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
