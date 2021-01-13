@@ -7,3 +7,5 @@ class gate(models.Model):
 
     name = fields.Char('Gate Number') 
     category = fields.Selection([('national','National'),('international','International')], string='Gate Category')
+    
+# hi mayur
